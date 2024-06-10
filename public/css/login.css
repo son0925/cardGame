@@ -1,0 +1,49 @@
+body {
+  background-color: #191919; /* 배경색: 어두운 회색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-form {
+  background-color: #FFFFFF; /* 폼 배경색: 흰색 */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  text-align: center; /* 폼 내부 요소 가운데 정렬 */
+}
+
+.login-title {
+  margin-bottom: 20px;
+  color: #333333; /* 제목 색: 어두운 회색 */
+}
+
+.login-input {
+  width: calc(100% - 24px); /* 폼 패딩 15px * 2 + 테두리 두께 1px * 2 */
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #CCCCCC; /* 입력란 테두리 */
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.login-input:focus {
+  border-color: #FF5733; /* 입력란 포커스시 테두리 색: 빨간색 */
+}
+
+.login-button {
+  width: calc(100% - 24px); /* 폼 패딩 15px * 2 + 테두리 두께 1px * 2 */
+  padding: 12px;
+  background-color: #FF5733; /* 버튼 배경색: 빨간색 */
+  color: #FFFFFF; /* 버튼 텍스트 색: 흰색 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #FF7043; /* 호버시 버튼 배경색: 진한 빨간색 */
+}

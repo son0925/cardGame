@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>섯다 게임</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">섯다 게임</div>
+    <div class="auth-buttons">
+      <% if (!username) { %>
+        <a href="/login">로그인</a>
+      <% } else { %>
+        <a href="/userInfo"><%=username%>님 <%=money%>원</a>
+        <a href="/logout">로그아웃</a>
+      <% } %>
+    </div>
+  </header>
+  <main>
+    <div class="room-header">
+      <h1>방 목록</h1>
+      <a href="/createRoom" class="roomCreate">방 만들기</a>
+    </div>
+  <div class="room-list">
+      <% if (roomList.length === 0) { %>
+        <p>방이 존재하지 않습니다. 새로운 방을 만드세요.</p>
+      <% } else { %>
+        <% roomList.forEach(room => { %>
+          <div class="roomInfo">
+            <div class="roomTitle"><a href="/joinRoom/<%=room%>"><%= room %></a></div>
+            <!-- 다른 방 정보를 여기에 표시할 수 있습니다 -->
+          </div>
+        <% }); %>
+      <% } %>
+  </div>
+  
+  </main>
+</body>
+</html>
