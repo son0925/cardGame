@@ -31,7 +31,12 @@
       <% } else { %>
         <% roomList.forEach(room => { %>
           <div class="roomInfo">
-            <div class="roomTitle"><a href="/joinRoom/<%=room%>"><%= room %></a></div>
+            <div class="roomTitle"><a href="/joinRoom/<%=room.roomname%>"><%= room.roomname %></a></div>
+            <% if (room.option == 'two') {%>
+              <div class="roomOption"><p>2장 섯다</p></div>
+            <% } else { %>
+              <div class="roomOption"><p>3장 섯다</p></div>
+            <% } %>
             <!-- 다른 방 정보를 여기에 표시할 수 있습니다 -->
           </div>
         <% }); %>

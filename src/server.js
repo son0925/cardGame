@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 app.use(cookieSession({
   secret: 'key',
+  httpOnly: true
 }))
 app.use(express.static(path.join(__dirname, '../public')));
 
