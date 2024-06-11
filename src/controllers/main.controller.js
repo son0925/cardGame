@@ -1,8 +1,9 @@
 const User = require("../models/users.model")
-const roomList = ['인사'];
+const roomList = ['test1', 'test2'];
 
 const getMainView = async (req,res) => {
   const userId = req.cookies.userId;
+  res.cookie('msg', 'hello');
   if (!userId) {
     return res.redirect('/login');
   }
@@ -10,7 +11,7 @@ const getMainView = async (req,res) => {
   res.render('index',{
     username: exUser.username,
     money: exUser.money,
-    roomList: roomList || []
+    roomList: roomList || ['관리자 방']
   })
 }
 
@@ -34,7 +35,6 @@ const loginUser = async (req,res) => {
     try {
       await newUser.save();
       res.cookie('userId', newUser.id);
-      res.cookie('msg', 'hello');
       res.redirect('/')
     } catch (error) {
       res.status(500).json({err: error})
