@@ -9,6 +9,7 @@ const mainRouter = require('./routes/main.router');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const joinRouter = require('./routes/join.router');
 require('dotenv').config();
 
 
@@ -33,7 +34,15 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, '../public')));
 
 
+// 유저가 접속했을 때
+io.on('connection', (socket) => {
+  console.log('유저 접속')
+  socket.emit('connection', {msg: 'hello'})
+})
+
+
 // 서버 라우터
+app.use('/joinRoom', joinRouter);
 app.use('/', mainRouter);
 
 

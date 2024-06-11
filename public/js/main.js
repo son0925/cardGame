@@ -12,3 +12,13 @@ function getMsg() {
 }
 
 getMsg()
+
+// 소켓
+const socket = io('http://localhost:4000', {
+  autoConnect: false
+})
+
+// 유저가 접속 했을 때 환영 메세지
+socket.on('connection', ({msg}) => {
+  alert(JSON.stringify(msg))
+})
