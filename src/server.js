@@ -3,7 +3,12 @@ const app = express();
 const http = require('http')
 const server = http.createServer(app);
 const Server = require('socket.io').Server;
-const io = new Server(server);
+const io = new Server(server,{
+  cors: {
+    origin: 'http://localhost:4000',
+    methods: ['get', 'post']
+  }
+});
 const path = require('path');
 const mainRouter = require('./routes/main.router');
 const cookieParser = require('cookie-parser');
@@ -34,20 +39,15 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-// 소켓 미들웨어
-io.use((socket, next) => {
-  const username = socket.handshake.auth.username;
-
-  socket.username = username;
-  next();
-})
-
-
-// 유저가 접속했을 때
 io.on('connection', (socket) => {
-  console.log('유저 접속')
-  socket.emit('connection', {msg: 'hello'})
+  console.log('유저 접속');
+
+  socket.emit('connection', ({
+    msg: '안녕'
+  }))
 })
+
+
 
 
 // 서버 라우터
