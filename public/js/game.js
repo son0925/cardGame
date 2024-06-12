@@ -1,7 +1,13 @@
-// 우선 페이지에 들어갔을 때 연결되는지
-const socket = io('http://localhost:4000');
+const socket = io('http://localhost:4000',{
+  autoConnect: false
+});
+
+// 방에 접속을 했을 때 URL
+
 
 
 socket.on('connection', ({ msg }) => {
   alert(JSON.stringify(msg))
 })
+
+
