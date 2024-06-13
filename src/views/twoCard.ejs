@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>섯다 게임</title>
   <script src="/socket.io/socket.io.js"></script>
   <script defer src="../../js/game.js"></script>
+  <link rel="stylesheet" href="../../css/game.css">
 </head>
 <body>
-  
+  <div class="container">
+    <div class="player-info left">
+      <h2>상대 정보</h2>
+      <p>이름: <span id="myName">홍길동</span></p>
+      <p>돈: <span id="myMoney">100,000원</span></p>
+    </div>
+    
+    <div class="player-info right">
+      <h2>내 정보</h2>
+      <p>이름: <span id="opponentName">임꺽정</span></p>
+      <p>돈: <span id="opponentMoney">80,000원</span></p>
+    </div>
+
+    <div class="controls">
+      <div class="controls-left">
+        <button class="control-button" id="startGame">게임 시작하기</button>
+        <button class="control-button" id="stopGame">중단하기</button>
+        <button class="control-button" id="exitRoom" onclick="location.href = '/'">방 나가기</button>
+      </div>
+
+      <div class="controls-right">
+        <button class="control-button" id="bet">배팅하기</button>
+        <button class="control-button" id="fold">포기하기</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -9,10 +9,10 @@ const getGameView = async (req,res) => {
     return res.redirect('/login');
   }
 
-  const exUser = await User.findOne({ userId });
+  const exUser = await User.findById(userId);
   if (!exUser) {
-    res.cookie('msg', '해당 유저에 대한 정보가 없습니다')
-    return res.status(401);
+    res.cookie('msg', '해당 유저에 대한 정보가 없습니다', { httpOnly: false})
+    return res.status(401).redirect('/');
   }
 
   // 유저가 있다면

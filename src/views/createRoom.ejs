@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="../../css/createRoom.css">
 </head>
 <body>
-  <form action="/createRoom" method="post">
-    <input type="text" placeholder="방 이름" name="roomname"> <br>
-    <input type="radio" name="option" value="two">
-    <label>2장</label>
-    <input type="radio" name="option" value="three">
-    <label>3장</label> <br>
-    <input type="submit" value="방 만들기">
+  <form action="/createRoom" method="post" class="form-container">
+    <input type="text" placeholder="방 이름" name="roomname" class="input-field"> <br>
+    <div class="radio-group">
+      <input type="radio" name="option" value="two" id="two">
+      <label for="two">2장</label>
+      <input type="radio" name="option" value="three" id="three">
+      <label for="three">3장</label>
+    </div>
+    <input type="submit" value="방 만들기" class="submit-button">
   </form>
-  <a href="/">메인 화면으로 가기</a>
+  <a href="/" class="back-link">메인 화면으로 가기</a>
 </body>
 </html>

@@ -43,8 +43,12 @@ io.on('connection', (socket) => {
   console.log('유저 접속');
 
   socket.emit('connection', ({
-    msg: '안녕'
+    msg: '환영합니다 흑우님'
   }))
+
+  socket.on('disconnect', () => {
+    console.log('유저가 나갔습니다')
+  })
 })
 
 

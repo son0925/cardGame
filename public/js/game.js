@@ -1,6 +1,4 @@
-const socket = io('http://localhost:4000',{
-  autoConnect: false
-});
+const socket = io('http://localhost:4000');
 
 // 방에 접속을 했을 때 URL
 
@@ -9,5 +7,3 @@ const socket = io('http://localhost:4000',{
 socket.on('connection', ({ msg }) => {
   alert(JSON.stringify(msg))
 })
-
-
