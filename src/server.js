@@ -46,32 +46,45 @@ app.use(express.static(path.join(__dirname, '../public')));
 // 2. 게임 시작 버튼 활성, 비활성
 // 3. 게임 알고리즘 구현하기
 // 4. 나갔을 때 이벤트 만들기
+
+const rooms = {};
+
 io.on('connection', (socket) => {
-  console.log('유저 접속');
-
-  socket.emit('connection', ({
-    msg: '환영합니다 흑우님'
-  }))
-
   socket.on('joinRoom', ({ roomname, username}) => {
-    console.log(roomname + " " + username)
-    socket.join(roomname);
-    console.log(`${roomname}방에 ${username}님이 들어왔습니다`);
+    // 방이 없다면
+    if (!rooms[roomname]) {
+      rooms[roomname] = [];
+    }
 
-    io.to(roomname).emit('message', {
-      user: '시스템',
-      text: `${username}님이 방에 들어왔습니다`
-    })
+    else if(rooms[roomname].length >= 2) {
+      socket.emit('roomFull', {msg: '방이 가득 찼습니다 다른 방을 가세요'})
+      return;
+    }
+
+    socket.join(roomname);
+    rooms[roomname].push(username);
+
+    socket.emit('connection', {msg: `환영합니다 ${username}님`})
 
     io.to(roomname).emit('roomData', {
       room: roomname,
-      // user: getUsersInRoom()
+      user: rooms[roomname]
+    });
+
+    socket.on('disconnect', () => {
+      console.log('유저 나감');
+
+      rooms[roomname] = rooms[roomname].filter(user => user !== username);
+      io.to(roomname).emit('message', {
+        user: '시스템',
+        text: `${username}님이 나가셨습니다`
+      });
+      io.to(roomname).emit('roomData', {
+        room: roomname,
+        user: rooms[roomname]
+      })
     })
-  })
 
-
-  socket.on('disconnect', () => {
-    console.log('유저가 나갔습니다')
   })
 })
 

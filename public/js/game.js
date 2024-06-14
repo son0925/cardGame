@@ -4,10 +4,20 @@ const socket = io('http://localhost:4000');
 
 
 const roomname = window.location.pathname.split('/').pop();
-const username = "<%= username %>";
+const username = document.getElementById('myName').innerText;
 
 
-socket.emit('joinRoom', ({ roomname, username}))
+socket.emit('joinRoom', ({ roomname, username}));
+
+socket.on('message', ({ user, text }) => {
+  alert(`${user} : ${text}`);
+})
+
+
+// 방 목록 출력 시키기 만들기
+socket.on('roomData', ({ room, user }) => {
+
+})
 
 
 
