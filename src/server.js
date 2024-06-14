@@ -53,6 +53,23 @@ io.on('connection', (socket) => {
     msg: '환영합니다 흑우님'
   }))
 
+  socket.on('joinRoom', ({ roomname, username}) => {
+    console.log(roomname + " " + username)
+    socket.join(roomname);
+    console.log(`${roomname}방에 ${username}님이 들어왔습니다`);
+
+    io.to(roomname).emit('message', {
+      user: '시스템',
+      text: `${username}님이 방에 들어왔습니다`
+    })
+
+    io.to(roomname).emit('roomData', {
+      room: roomname,
+      // user: getUsersInRoom()
+    })
+  })
+
+
   socket.on('disconnect', () => {
     console.log('유저가 나갔습니다')
   })

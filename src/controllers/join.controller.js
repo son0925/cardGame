@@ -1,5 +1,6 @@
 const User = require("../models/users.model");
 
+
 const getGameView = async (req,res) => {
   // 쿠키로 유저 id를 가져온다
   const userId = req.cookies.userId;
